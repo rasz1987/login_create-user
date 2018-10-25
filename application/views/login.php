@@ -37,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="form-group">
 		    	<a href="#">Password recovery</a> | <a href="#">Create User</a>
 			</div>
-			<button type="submit" class="btn btn-primary">Submit</button>
+			<button type="submit" class="btn btn-primary">Login</button>
 		</form>
 	</div>
 
