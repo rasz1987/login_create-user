@@ -35,14 +35,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	<label class="form-check-label" for="exampleCheck1">Check me out</label>
 		    </div>
 			<div class="form-group">
-		    	<a href="#">Password recovery</a> | <a href="#">Create User</a>
+		    	<a href="#">Password recovery</a> | <a href="#exampleModalCenter" data-toggle="modal" >Create User</a>
 			</div>
 			<button type="submit" class="btn btn-primary">Login</button>
 		</form>
 	</div>
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php /*echo*/  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Create User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
+        <form action="<?php echo base_url('save'); ?>" method="post">
+			<div class="form-group">
+				<label for="name">Name:</label>
+		    	<input type="text" class="form-control" id="name" name="name" value="<?php echo set_value('name')?>" aria-describedby="nameHelp" placeholder="Enter your name" >
+		    </div>
+			<div class="form-group">
+		    	<label for="lastname">Lastname:</label>
+		    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo set_value('lastname')?>" placeholder="Enter your lastname" >
+			</div>
+			<div class="form-group">
+		    	<label for="email">Email:</label>
+		    	<input type="email" class="form-control" id="email" name="email" value="<?php echo set_value('email')?>" placeholder="Enter your email" >
+			</div>
+			<div class="form-group">
+		    	<label for="user">User:</label>
+		    	<input type="text" class="form-control" id="user" name="user" value="<?php echo set_value('user')?>" placeholder="Enter your user" >
+			</div>
+			<div class="form-group">
+		    	<label for="password">Password:</label>
+		    	<input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" >
+			</div>
+			<div class="form-group">
+		    	<input type="password" class="form-control" id="passconf" name="passconf" placeholder="Retype your password" >
+			</div>
+	  </div>
+      <div class="modal-footer">
+        <button type="submit" name="save" class="btn btn-success">Save changes</button>
+        </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
