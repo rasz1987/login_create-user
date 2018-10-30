@@ -58,19 +58,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       	<?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
         <form action="<?php echo base_url('save'); ?>" method="post">
 			<div class="form-group">
-				<label for="name">Name:</label>
+				<label for="name">Name & Lastname:</label>
 		    	<input type="text" class="form-control" id="name" name="name" value="<?php echo set_value('name')?>" aria-describedby="nameHelp" placeholder="Enter your name" >
 		    </div>
 			<div class="form-group">
-		    	<label for="lastname">Lastname:</label>
 		    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo set_value('lastname')?>" placeholder="Enter your lastname" >
 			</div>
 			<div class="form-group">
-		    	<label for="email">Email:</label>
+		    	<label for="email">Email & User:</label>
 		    	<input type="email" class="form-control" id="email" name="email" value="<?php echo set_value('email')?>" placeholder="Enter your email" >
 			</div>
 			<div class="form-group">
-		    	<label for="user">User:</label>
 		    	<input type="text" class="form-control" id="user" name="user" value="<?php echo set_value('user')?>" placeholder="Enter your user" >
 			</div>
 			<div class="form-group">
@@ -79,6 +77,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="form-group">
 		    	<input type="password" class="form-control" id="passconf" name="passconf" placeholder="Retype your password" >
+			</div>
+			<hr>
+			<div>
+				<h5 class="modal-tittle">Questions to recovery password</h5>
+			</div>
+			<?php
+			//Declaration of variables for dropdown
+			$opt_q = array_combine(
+				array_column($questions, 'id'), 
+				array_column($questions, 'preguntas')
+			);
+			?>
+			<div class="form-group">
+		    	<label for="email">First question:</label>
+		    	<?php echo form_dropdown('firstQ',$opt_q,'','class="form-control"');?>
+		    </div>
+			<div class="form-group">
+		    	<input type="text" class="form-control" id="firstA" name="firstA" value="<?php echo set_value('firstA')?>" placeholder="Enter your first answer" >
+			</div>
+
+			<div class="form-group">
+		    	<label for="email">Second question:</label>
+		    	<?php echo form_dropdown('secondQ',$opt_q,'','class="form-control"'); ?>
+			</div>
+			<div class="form-group">
+		    	<input type="text" class="form-control" id="secondA" name="secondA" value="<?php echo set_value('secondA')?>" placeholder="Enter your second answer" >
 			</div>
 	  </div>
       <div class="modal-footer">
