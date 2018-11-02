@@ -85,7 +85,11 @@ class Createuser_controller extends CI_Controller {
 			if ($this->form_validation->run()) 
 			{	
 				$data = array(
-					'' => , );
+					'name'     => $this->input->post('name'),
+					'lastname' => $this->input->post('lastname'),
+					'email'    => $this->input->post('email'),
+					'user'     => $this->input->post('user'),
+					'password' => );
 				
 			}
 			else
