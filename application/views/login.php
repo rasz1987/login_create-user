@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<h1 style="font-size: 6vw" >Welcome to Login Project!</h1>
 
 	<div id="body">
+		<?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
 		<form>
 			<div class="form-group">
 				<label for="exampleInputEmail1">Email address</label>
@@ -55,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </button>
       </div>
       <div class="modal-body">
-      	<?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
+      	
         <form action="<?php echo base_url('save'); ?>" method="post">
 			<div class="form-group">
 				<label for="name">Name & Lastname:</label>

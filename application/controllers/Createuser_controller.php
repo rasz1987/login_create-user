@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Createuser_controller extends CI_Controller {
 
-	function construct(){
+	function __construct(){
 		parent::__construct();
-
+		$this->load->model('login_model');
 	}
 	
 	//Function to save the dat of users
@@ -64,18 +64,60 @@ class Createuser_controller extends CI_Controller {
 					'field' => 'passconf',
 					'label' => 'Password Confirmation',
 					'rules' => 'trim|required|matches[password]'
+				),
+				//First answer
+				array(
+					'field'  => 'firstA',
+					'label'  => 'Fisrt Answer',
+					'rules'  => 'callback_valid_answer'
+					
+				),
+				//Second answer
+				array(
+					'field' => 'secondA',
+					'label' => 'Second Answer',
+					'rules' => 'callback_valid_answer'
 				)
 			);
-			
+			//Set rule for the form_validation
 			$this->form_validation->set_rules($config);
-			if ($this->form_validation->run() == FALSE) 
-			{
-				$this->load->view('login');
+
+			if ($this->form_validation->run()) 
+			{	
+				$data = array(
+					'' => , );
+				
 			}
+			else
+			{
+				$data['questions'] = $this->login_model->questions();
+				$this->load->view('login', $data);
+			}
+		
+
+
+
 		}
 		else{
 			redirect('login_controller');
 		}
+	}
+
+	//function to valid the first and second answer
+	public function valid_answer($answer = '')
+	{
+		$answer = trim($answer);
+		if (empty($answer))
+		{
+			$this->form_validation->set_message('valid_answer', 'The {field} field is required.');
+			return FALSE;
+		}
+		if ($answer < 10)
+		{
+			$this->form_validation->set_message('valid_answer', 'The {field} field must be at least 10 characters.');
+			return FALSE;
+		}
+		return TRUE;
 	}
 
 	//Function to valid the password with a callback function
