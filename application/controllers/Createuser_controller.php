@@ -85,11 +85,42 @@ class Createuser_controller extends CI_Controller {
 			if ($this->form_validation->run()) 
 			{	
 				$data = array(
-					'name'     => $this->input->post('name'),
-					'lastname' => $this->input->post('lastname'),
-					'email'    => $this->input->post('email'),
-					'user'     => $this->input->post('user'),
-					'password' => );
+					'nombre'      => $this->input->post('name'),
+					'apellido'    => $this->input->post('lastname'),
+					'correo'      => $this->input->post('email'),
+					'usuario'     => $this->input->post('user'),
+					'password'    => do_hash($this->input->post('password'), 'sha256'),
+					'nivel_id'    => 1
+				);
+				//Set user id
+				$user_id = $this->login_model->saveUser($data);
+				
+				$ans1 = array(
+					'respuestas' => do_hash($this->input->post('firstA', 'sha256'))
+				);
+				$ans2 = array(
+					'respuestas' => do_hash($this->input->post('secondA', 'sha256'))
+				);
+
+				//Set answers id
+				$ans1_id = $this->login_model->saveAnswer($ans1);
+				$ans2_id = $this->login_model->saveAnswer($ans2);
+				
+				//Data fo the password recovery
+				$data_recovery = array(
+					'user_id' => $user_id,
+					'firstQ_id' => $this->input->post('firstQ'),
+					'firstA_id' => $ans1_id,
+					'secondQ_id' => $this->input->post('secondQ'),
+					'secondA_id' => $ans2_id);
+				$this->login_model->createDataRecovery($data_recovery);
+
+				$this->session->set_flashdata('success', '<div class="alert alert-success">The user has been created</div>');
+
+				redirect('login_controller');
+
+
+
 				
 			}
 			else
@@ -116,7 +147,7 @@ class Createuser_controller extends CI_Controller {
 			$this->form_validation->set_message('valid_answer', 'The {field} field is required.');
 			return FALSE;
 		}
-		if ($answer < 10)
+		if (strlen($answer)  < 10)
 		{
 			$this->form_validation->set_message('valid_answer', 'The {field} field must be at least 10 characters.');
 			return FALSE;

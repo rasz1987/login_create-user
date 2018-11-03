@@ -21,6 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<div id="body">
 		<?php echo validation_errors('<div class="alert alert-danger">','</div>'); ?>
+		<?php echo $this->session->flashdata('success'); ?>
 		<form>
 			<div class="form-group">
 				<label for="exampleInputEmail1">Email address</label>
@@ -60,24 +61,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <form action="<?php echo base_url('save'); ?>" method="post">
 			<div class="form-group">
 				<label for="name">Name & Lastname:</label>
-		    	<input type="text" class="form-control" id="name" name="name" value="<?php echo set_value('name')?>" aria-describedby="nameHelp" placeholder="Enter your name" >
+		    	<input type="text" class="form-control" id="name" name="name" value="<?php echo set_value('name')?>" aria-describedby="nameHelp" placeholder="Enter your name" maxlength= "150" >
 		    </div>
 			<div class="form-group">
-		    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo set_value('lastname')?>" placeholder="Enter your lastname" >
+		    	<input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo set_value('lastname')?>" placeholder="Enter your lastname" maxlength= "150" >
 			</div>
 			<div class="form-group">
 		    	<label for="email">Email & User:</label>
-		    	<input type="email" class="form-control" id="email" name="email" value="<?php echo set_value('email')?>" placeholder="Enter your email" >
+		    	<input type="email" class="form-control" id="email" name="email" value="<?php echo set_value('email')?>" placeholder="Enter your email" maxlength= "150" >
 			</div>
 			<div class="form-group">
-		    	<input type="text" class="form-control" id="user" name="user" value="<?php echo set_value('user')?>" placeholder="Enter your user" >
+		    	<input type="text" class="form-control" id="user" name="user" value="<?php echo set_value('user')?>" placeholder="Enter your user" maxlength= "150" >
 			</div>
 			<div class="form-group">
 		    	<label for="password">Password:</label>
-		    	<input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" >
+		    	<input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" maxlength="150" >
 			</div>
 			<div class="form-group">
-		    	<input type="password" class="form-control" id="passconf" name="passconf" placeholder="Retype your password" >
+		    	<input type="password" class="form-control" id="passconf" name="passconf" placeholder="Retype your password" maxlength="150" >
 			</div>
 			<hr>
 			<div>
@@ -95,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	<?php echo form_dropdown('firstQ',$opt_q,'','class="form-control"');?>
 		    </div>
 			<div class="form-group">
-		    	<input type="text" class="form-control" id="firstA" name="firstA" value="<?php echo set_value('firstA')?>" placeholder="Enter your first answer" >
+		    	<input type="text" class="form-control" id="firstA" name="firstA" value="<?php echo set_value('firstA')?>" placeholder="Enter your first answer" maxlength= "250" >
 			</div>
 
 			<div class="form-group">
@@ -103,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		    	<?php echo form_dropdown('secondQ',$opt_q,'','class="form-control"'); ?>
 			</div>
 			<div class="form-group">
-		    	<input type="text" class="form-control" id="secondA" name="secondA" value="<?php echo set_value('secondA')?>" placeholder="Enter your second answer" >
+		    	<input type="text" class="form-control" id="secondA" name="secondA" value="<?php echo set_value('secondA')?>" placeholder="Enter your second answer" maxlength= "250" >
 			</div>
 	  </div>
       <div class="modal-footer">
