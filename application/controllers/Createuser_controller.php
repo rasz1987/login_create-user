@@ -118,20 +118,12 @@ class Createuser_controller extends CI_Controller {
 				$this->session->set_flashdata('success', '<div class="alert alert-success">The user has been created</div>');
 
 				redirect('login_controller');
-
-
-
-				
 			}
 			else
 			{
 				$data['questions'] = $this->login_model->questions();
 				$this->load->view('login', $data);
 			}
-		
-
-
-
 		}
 		else{
 			redirect('login_controller');
